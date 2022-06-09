@@ -1,0 +1,35 @@
+## Docker compose file for local dev environment
+
+version: "3.8"
+   
+services:
+    # API Backend using Python fastapi
+    fastapi:
+        build: .
+        container_name: fastapi
+        command: uvicorn app.main:app --host 0.0.0.0 --port 8083
+        volumes:
+            - .:/usr/src/app/
+        ports:
+            - "8083:8083"
+        depends_on:
+            - redis
+            - postgres
+     # Local Redis instance
+    redis:
+        image: "redis:alpine"
+    # Postgres database using docker volumes
+    db:
+        image: postgres:14.1-alpine
+        restart: always
+        environment:
+          - POSTGRES_USER=postgres
+          - POSTGRES_PASSWORD=postgres
+        ports:
+          - '5432:5432'
+        volumes: 
+          - db:/var/lib/postgresql/data
+# Relevant docker volumes to ensure persistence
+volumes:
+  db:
+    driver: local
