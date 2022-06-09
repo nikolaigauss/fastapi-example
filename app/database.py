@@ -5,7 +5,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 # For simplicity postgres user is being utilized, suggested approach is using environment variables in the container.
-SQLALCHEMY_DATABASE_URL = "postgresql://postgres:postgres@host.docker.internal/game"
+SQLALCHEMY_DATABASE_URL = "postgresql://postgres:postgres@host.docker.internal/postgres"
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL,
