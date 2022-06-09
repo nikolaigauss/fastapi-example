@@ -4,7 +4,7 @@ import os
 from tkinter import dnd
 import redis
 
-from fastapi import Depends, FastAPI, HTTPException, Request, Response
+from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
 
 from . import crud, models, schemas
@@ -39,6 +39,7 @@ def read_root():
 @app.get("/player/{player_id}", response_model=schemas.Player)
 def read_player(player_id: int, db: Session = Depends(get_db)):
     """
+    HTTP GET endpoint to obtain player data based on id
     :param player_id: The player identifier which operates as the DB PK
     :param db: A database connection to perform the relevants query
     :returns: JSON blob with all relevant data
@@ -62,7 +63,7 @@ def read_player(player_id: int, db: Session = Depends(get_db)):
         print("Cached gold from Redis")
         return db_player
 
-    # Up to this point redis can't find a cached key hence we fall back to the DB.
+    # Up to this point redis couldn't find a cached key hence we fall back to the DB.
     db_player = crud.get_player(db, player_id=player_id)
     # Handling player not found exception nicely
     if db_player is None:

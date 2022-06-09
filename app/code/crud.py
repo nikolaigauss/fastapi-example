@@ -13,15 +13,6 @@ def get_player(db: Session, player_id: int):
     """
     return db.query(models.Player).filter(models.Player.id == player_id).first()
 
-def get_player_name(db: Session, player_id: int):
-    """
-    This function only returns a player name based on id, it executes if gold is retrieved by Redis.
-    :param db: A database connection to perform the relevants query
-    :param player_id: The player identifier which operates as the DB PK
-    :returns: Query results returning a single player
-    """
-    return db.query(models.Player).filter(models.Player.id == player_id)
-
 def get_player_info_by_name(db: Session, player_name: str):
     """
     :param db: A database connection to perform the relevants query

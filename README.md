@@ -63,6 +63,10 @@ upstream loadbalancer {
         environment:
           - REDIS_HOST=host.docker.internal
           - REDIS_PORT=6379
+          - DB_HOST=host.docker.internal
+          - DB_NAME=postgres
+          - DB_USER=postgres
+          - DB_PASSWORD=postgres
 ```
 
 Once the two steps described above are done, bring down the stack `docker-compose down` and bring it up again `docker-compose build && docker-compose up`
