@@ -64,10 +64,13 @@ upstream loadbalancer {
         depends_on:
             - redis
             - postgres
+        links:
+            - "db:database"
+            - "redis:cache"
         environment:
-          - REDIS_HOST=host.docker.internal
+          - REDIS_HOST=cache
           - REDIS_PORT=6379
-          - DB_HOST=host.docker.internal
+          - DB_HOST=database
           - DB_NAME=postgres
           - DB_USER=postgres
           - DB_PASSWORD=postgres
