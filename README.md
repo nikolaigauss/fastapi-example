@@ -29,6 +29,10 @@ To bring the stack down:
 docker-compose down
 ```
 
+Once the stack is up and running you can access the API via http://127.0.0.1:8083, as per default API servers will listen on http://127.0.0.1:5001 and http://127.0.0.1:5002, direct access will also work.
+
+### A word about persistence
+
 The compose file will create a docker volume to ensure that the DB is persisted across deployments, to wipe the db perform run: `docker volume rm $VOLUME_NAME`
 
 ### Scaling the stack
