@@ -29,7 +29,11 @@ To bring the stack down:
 docker-compose down
 ```
 
+### Using the stack
+
 Once the stack is up and running you can access the API via http://127.0.0.1:8083, as per default API servers will listen on http://127.0.0.1:5001 and http://127.0.0.1:5002, direct access will also work.
+
+To test the API quickly is a good idea to use the Swagger frontend which can be found in `http://127.0.0.1:8083/docs`
 
 ### A word about persistence
 
